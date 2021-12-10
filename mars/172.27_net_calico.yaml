@@ -778,4 +778,3 @@ metadata:
   name: calico-kube-controllers
   namespace: kube-system
 ---
-# Source: calico/templates/calico-etcd-secrets.yaml
