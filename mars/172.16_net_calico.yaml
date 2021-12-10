@@ -781,4 +781,3 @@ metadata:
 # Source: calico/templates/calico-etcd-secrets.yaml
 
 ---
-# Source: calico/templates/calico-typha.yaml
