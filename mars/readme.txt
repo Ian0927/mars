@@ -5,9 +5,9 @@
 # 3. master 서버의 ip를 mars_master_config.sh에 기입
 # 4. mars_worker_config.sh에 master ip 기입
 # master 서버 설정
-# 0. mars_common_config.sh 실행
 # 1. mars_add_hosts_config.sh 실행
-# 2. mars_master_config.sh
+# 2. mars_common_config.sh 실행
+# 3. mars_master_config.sh
 # worker 서버 설정
 # 1. mars_add_hosts_config.sh 실행
 # 2. mars_common_config.sh 실행
