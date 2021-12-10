@@ -1,0 +1,178 @@
+Name:                 calico-node-zm8f2
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Node:                 mars-worker1/172.27.0.227
+Start Time:           Fri, 03 Dec 2021 18:01:43 +0900
+Labels:               controller-revision-hash=9545b5f67
+                      k8s-app=calico-node
+                      pod-template-generation=1
+Annotations:          scheduler.alpha.kubernetes.io/critical-pod: 
+Status:               Running
+IP:                   172.27.0.227
+IPs:
+  IP:           172.27.0.227
+Controlled By:  DaemonSet/calico-node
+Init Containers:
+  upgrade-ipam:
+    Container ID:  docker://f1db88aa114f304f5d4eeea06d28823cf430eca5b07109580f01938c2956dc14
+    Image:         calico/cni:v3.9.4
+    Image ID:      docker-pullable://docker.io/calico/cni@sha256:df85833df766bfde0f8f5e2b2297d314090026fe27c03a91e13636dbad0c7a2f
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /opt/cni/bin/calico-ipam
+      -upgrade
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 03 Dec 2021 18:02:05 +0900
+      Finished:     Fri, 03 Dec 2021 18:02:05 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      KUBERNETES_NODE_NAME:        (v1:spec.nodeName)
+      CALICO_NETWORKING_BACKEND:  <set to the key 'calico_backend' of config map 'calico-config'>  Optional: false
+    Mounts:
+      /host/opt/cni/bin from cni-bin-dir (rw)
+      /var/lib/cni/networks from host-local-net-dir (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from calico-node-token-rjnhv (ro)
+  install-cni:
+    Container ID:  docker://bc2e27099b5b1f5089a3403dea2bf678237c5eab6a2e6d1f0315960e6b4b1712
+    Image:         calico/cni:v3.9.4
+    Image ID:      docker-pullable://docker.io/calico/cni@sha256:df85833df766bfde0f8f5e2b2297d314090026fe27c03a91e13636dbad0c7a2f
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /install-cni.sh
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 03 Dec 2021 18:02:06 +0900
+      Finished:     Fri, 03 Dec 2021 18:02:07 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      CNI_CONF_NAME:         10-calico.conflist
+      CNI_NETWORK_CONFIG:    <set to the key 'cni_network_config' of config map 'calico-config'>  Optional: false
+      KUBERNETES_NODE_NAME:   (v1:spec.nodeName)
+      CNI_MTU:               <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      SLEEP:                 false
+    Mounts:
+      /host/etc/cni/net.d from cni-net-dir (rw)
+      /host/opt/cni/bin from cni-bin-dir (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from calico-node-token-rjnhv (ro)
+  flexvol-driver:
+    Container ID:   docker://a8a10f0e3558fd72aeb8621e8640ae62ec99fccaf6568e466d1da41ead1e0841
+    Image:          calico/pod2daemon-flexvol:v3.9.4
+    Image ID:       docker-pullable://docker.io/calico/pod2daemon-flexvol@sha256:c99e3e20083902d79fb3aeb5c7cb634c9b32640ca00d38da452e858a7717a80d
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 03 Dec 2021 18:02:16 +0900
+      Finished:     Fri, 03 Dec 2021 18:02:16 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /host/driver from flexvol-driver-host (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from calico-node-token-rjnhv (ro)
+Containers:
+  calico-node:
+    Container ID:   docker://98fe825374406210048522974806c4076b624291a9511737f086422c507eac35
+    Image:          calico/node:v3.9.4
+    Image ID:       docker-pullable://docker.io/calico/node@sha256:770b4d69c6de7fda2bf1cee7b34502804716370a51295052b09e8598138f47fa
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Fri, 03 Dec 2021 18:02:28 +0900
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:      250m
+    Liveness:   exec [/bin/calico-node -felix-live -bird-live] delay=10s timeout=1s period=10s #success=1 #failure=6
+    Readiness:  exec [/bin/calico-node -felix-ready -bird-ready] delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      DATASTORE_TYPE:                     kubernetes
+      WAIT_FOR_DATASTORE:                 true
+      NODENAME:                            (v1:spec.nodeName)
+      CALICO_NETWORKING_BACKEND:          <set to the key 'calico_backend' of config map 'calico-config'>  Optional: false
+      CLUSTER_TYPE:                       k8s,bgp
+      IP:                                 autodetect
+      CALICO_IPV4POOL_IPIP:               Always
+      FELIX_IPINIPMTU:                    <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      CALICO_IPV4POOL_CIDR:               172.27.0.0/16
+      CALICO_DISABLE_FILE_LOGGING:        true
+      FELIX_DEFAULTENDPOINTTOHOSTACTION:  ACCEPT
+      FELIX_IPV6SUPPORT:                  false
+      FELIX_LOGSEVERITYSCREEN:            info
+      FELIX_HEALTHENABLED:                true
+    Mounts:
+      /lib/modules from lib-modules (ro)
+      /run/xtables.lock from xtables-lock (rw)
+      /var/lib/calico from var-lib-calico (rw)
+      /var/run/calico from var-run-calico (rw)
+      /var/run/nodeagent from policysync (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from calico-node-token-rjnhv (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  lib-modules:
+    Type:          HostPath (bare host directory volume)
+    Path:          /lib/modules
+    HostPathType:  
+  var-run-calico:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/run/calico
+    HostPathType:  
+  var-lib-calico:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/calico
+    HostPathType:  
+  xtables-lock:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/xtables.lock
+    HostPathType:  FileOrCreate
+  cni-bin-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /opt/cni/bin
+    HostPathType:  
+  cni-net-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/cni/net.d
+    HostPathType:  
+  host-local-net-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/cni/networks
+    HostPathType:  
+  policysync:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/run/nodeagent
+    HostPathType:  DirectoryOrCreate
+  flexvol-driver-host:
+    Type:          HostPath (bare host directory volume)
+    Path:          /usr/libexec/kubernetes/kubelet-plugins/volume/exec/nodeagent~uds
+    HostPathType:  DirectoryOrCreate
+  calico-node-token-rjnhv:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  calico-node-token-rjnhv
+    Optional:    false
+QoS Class:       Burstable
+Node-Selectors:  beta.kubernetes.io/os=linux
+Tolerations:     :NoSchedule op=Exists
+                 :NoExecute op=Exists
+                 CriticalAddonsOnly op=Exists
+                 node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                 node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                 node.kubernetes.io/network-unavailable:NoSchedule op=Exists
+                 node.kubernetes.io/not-ready:NoExecute op=Exists
+                 node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                 node.kubernetes.io/unreachable:NoExecute op=Exists
+                 node.kubernetes.io/unschedulable:NoSchedule op=Exists
+Events:          <none>
