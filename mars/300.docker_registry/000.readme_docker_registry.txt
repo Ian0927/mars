@@ -1,0 +1,7 @@
+#실행 : create-registry.sh
+#결과 : docker ps -f name=registry
+###########################################################################################################################################################
+# [root@mars-master1 docker_registry]# docker ps -f name=registry
+# CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                             NAMES
+# 7cd64493fd63        registry:2          "/entrypoint.sh /e..."   15 minutes ago      Up 15 minutes       5000/tcp, 0.0.0.0:8443->443/tcp   registry
+###########################################################################################################################################################

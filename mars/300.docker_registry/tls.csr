@@ -1,0 +1,21 @@
+[req]
+distinguished_name = private_registry_cert_req
+x509_extensions = v3_req
+prompt = no
+
+[private_registry_cert_req]
+C = KR
+ST = SEOUL
+L = NexR
+O = ian
+OU = mars-master1
+CN = 172.27.0.49
+
+[v3_req]
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.0 = mars-master1
+IP.0 = 172.27.0.49
