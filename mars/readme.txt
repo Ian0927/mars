@@ -5,10 +5,12 @@
 # 3. master 서버의 ip를 mars_master_config.sh에 기입
 # 4. mars_worker_config.sh에 master ip 기입
 # master 서버 설정
-# 1. mars_add_hosts_config.sh 실행
-# 2. mars_common_config.sh 실행
-# 3. mars_master_config.sh
+# 1. 100.mars_add_hosts_config.sh 실행
+# 2. 200.mars_common_config.sh 실행
+# 3. 300.mars_master_config.sh
 # worker 서버 설정
-# 1. mars_add_hosts_config.sh 실행
-# 2. mars_common_config.sh 실행
-# 3. mars_worker_config.sh 실행
+# 1. 100.mars_add_hosts_config.sh 실행
+# 2. 200.mars_common_config.sh 실행
+# 3. 300.mars_worker_config.sh 실행
+# docker registry 설정
+# 1. 000.readme_docker_registry.txt 읽기
