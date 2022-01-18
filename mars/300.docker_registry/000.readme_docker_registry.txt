@@ -1,3 +1,5 @@
+#docker registry 를 사용 할 수 없는 경우에 인트라넷 환경에 registry를 구성하여 사용하는 서비스
+
 #실행 : create-registry.sh
 #결과 : docker ps -f name=registry
 ###########################################################################################################################################################
@@ -8,20 +10,23 @@
 #위와 같은 내용이 보이면 설치 성공
 #소프트웨어를 push 한 후 사용 가능함
 #예를 들어 도커를 빌드할 때 
-#docker build -t testdocker001-img .
+#       docker build -t testdocker001-img .
 #를 수행하여 testdocker001-img를 생성했다면, 사설 도커 레이지스트리에 등록할 수 있게 컨테이너 이미지의 이름을 변경한다
 (multistage:latest 이미지를 레지스트리에서 읽으려면 레지스트리가 서비스되는 주소(IP, 도메인)와 제공되는 이미지 이름을 레지스트리에 등록될 이름으로 지정해야 합니다.)
 # testdocker001-img의 사본을 만드는 방법은
-# docker tag testdocker001-img 172.27.0.49:8443/testdocker001-img
+#      docker tag testdocker001-img 172.27.0.49:8443/testdocker001-img
 #를 수행하고 확인은 docker images 172.27.0.49:8443/testdocker001-img 로 목록에서 확인 할 수 있음
 #이후 docker registry에 등록하기 위해
-#docker push 172.27.0.49:8443/testdocker001-img
+#      docker push 172.27.0.49:8443/testdocker001-img
 #를 실행함, 확인은
-# curl https://172.27.0.49:8443/v2/_catalog -k
+#      curl https://172.27.0.49:8443/v2/_catalog -k
 #로 확인함, 빌드된 이미지는 저장소 공간 낭비를 줄이기 위해 삭제해도 됨
 docker rmi -f 이미지ID
 
 이후 docker registry에 등록된 이미지를 사용하기 위해서 yaml 파일에 image 태그의 값(172.27.0.49:8443/testdocker001-img)을 아래와 같이 수정하여 사용함
+
+#yaml 적용 방법
+#       kubectl create -f ./success2.yaml
 
 apiVersion: apps/v1
 kind: Deployment
